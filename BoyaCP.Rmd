@@ -1,0 +1,22 @@
+---
+title: "Boya Cabo de Palos"
+author: "Fernando"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Temperatura
+
+```{r}
+library(openxlsx)
+tcp <- read.xlsx("Data/TemBoyaCP.xlsx")
+tcg <- read.xlsx("Data/TemBoyaCG.xlsx")
+library(dplyr)
+tcp.minmax <- tcp %>% group_by(Año,mes,dia) %>% summarize(min=min(tem),                                                   max=max(tem))
+tcg.minmax <- tcg %>% group_by(Año,mes,dia) %>% summarize(min=min(tem),                                                   max=max(tem))
+```
+
